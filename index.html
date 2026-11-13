@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CamLink</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101827;color:white;font-family:Arial;text-align:center}
+header{padding:25px;background:#1b3552;font-size:26px;font-weight:bold}
+main{padding:20px 15px 100px}
+.card{background:#1a2940;padding:22px;margin:15px auto;border-radius:18px;max-width:420px}
+button{background:#61d9ce;color:#10202c;border:0;border-radius:12px;padding:14px;margin:7px;width:90%;font-size:16px;font-weight:bold;cursor:pointer}
+.page{display:none}.active{display:block}
+#preview{padding:45px 10px;background:#263751;border-radius:15px;margin:15px 0}
+nav{position:fixed;bottom:0;background:#101827;width:100%;display:flex;justify-content:space-around}
+nav button{width:auto;background:#263751;color:white;font-size:12px;padding:12px 8px}
+small{color:#aabbd0}
+</style>
+</head>
+<body>
+<header>📷 CamLink</header>
+<main>
+<section id="inicio" class="page active">
+<h1>Bienvenido a CamLink</h1>
+<p>Tu cámara, desde tu celular.</p>
+<div class="card">
+<h2>Panel principal</h2>
+<p id="estado">Cámara no conectada</p>
+<button onclick="mostrar('conexion')">Conectar cámara</button>
+<button onclick="mostrar('camara')">Ver cámara</button>
+<button onclick="mostrar('fotos')">Mis fotografías</button>
+</div>
+</section>
+<section id="conexion" class="page">
+<h1>Conectar cámara</h1>
+<div class="card">
+<p id="conexionEstado">Esperando conexión...</p>
+<button onclick="conectar()">Simular conexión</button>
+<button onclick="desconectar()">Desconectar</button>
+</div>
+</section>
+<section id="camara" class="page">
+<h1>Vista de cámara</h1>
+<div class="card">
+<div id="preview">📷<h3>Vista de demostración</h3><small>No hay cámara real conectada</small></div>
+<button onclick="capturar()">Tomar fotografía de prueba</button>
+</div>
+</section>
+<section id="fotos" class="page">
+<h1>Mis fotografías</h1>
+<div class="card" id="galeria">
+<p>🌄 Galería de demostración</p>
+</div>
+</section>
+<section id="ajustes" class="page">
+<h1>Configuración</h1>
+<div class="card">
+<p>CamLink</p>
+<p>Proyecto Cámara + App Móvil</p>
+<p>Versión de demostración</p>
+</div>
+</section>
+</main>
+<nav>
+<button onclick="mostrar('inicio')">⌂ Inicio</button>
+<button onclick="mostrar('conexion')">Conectar</button>
+<button onclick="mostrar('camara')">Cámara</button>
+<button onclick="mostrar('fotos')">Fotos</button>
+<button onclick="mostrar('ajustes')">Ajustes</button>
+</nav>
+<script>
+function mostrar(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+function conectar(){
+document.getElementById('estado').textContent='Conexión de demostración activa';
+document.getElementById('conexionEstado').textContent='Cámara simulada conectada';
+}
+function desconectar(){
+document.getElementById('estado').textContent='Cámara no conectada';
+document.getElementById('conexionEstado').textContent='Desconectada';
+}
+function capturar(){
+let foto=document.createElement('p');
+foto.textContent='📸 Captura de demostración';
+document.getElementById('galeria').appendChild(foto);
+alert('Captura de prueba agregada a la galería');
+}
+</script>
+</body>
+</html>
